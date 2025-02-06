@@ -27,5 +27,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        viewEmployeeButton.setOnClickListener {
+            val intent = Intent(this, FetchActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

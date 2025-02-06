@@ -52,7 +52,7 @@ class AddEmployeeActivity : AppCompatActivity() {
         val employeeId = database.push().key!!
         val employee = Employee(employeeId, name.text.toString(), email.text.toString(), phone.text.toString())
 
-        database.child("employees").push().setValue(employee)
+        database.push().setValue(employee)
             .addOnSuccessListener {
                 Toast.makeText(this, "Employee added", Toast.LENGTH_SHORT).show()
                 name.text.clear()
