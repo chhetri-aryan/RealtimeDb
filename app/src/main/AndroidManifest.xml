@@ -16,6 +16,12 @@
         android:theme="@style/Theme.RealtimeDb"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateEmployeeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EmployeeDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".FetchActivity"
             android:exported="false" />
         <activity

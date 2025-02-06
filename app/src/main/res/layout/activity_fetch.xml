@@ -25,18 +25,17 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10sp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="451dp"
+        android:padding="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_employee"
         tools:itemCount="4"
-        />
+        tools:listitem="@layout/item_employee" />
 
     <TextView
         android:id="@+id/loading"

@@ -1,7 +1,7 @@
 package com.example.realtimedb
 
-import EmployeeAdapter
 import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -59,11 +59,20 @@ class FetchActivity : AppCompatActivity() {
                     val mAdapter = EmployeeAdapter(employeeList)
                     recyclerView.adapter = mAdapter
 
-//                    mAdapter.setOnItemClickListener(object : EmployeeAdapter.OnItemClickListener {
-//                        override fun onItemClick(position: Int) {
-//                            // Handle item click
-//                        }
-//                    })
+                    mAdapter.setOnItemClickListener(object : EmployeeAdapter.OnItemClickListener {
+                        override fun onItemClick(position: Int) {
+                            val emp = employeeList[position]
+                            val intent =
+                                Intent(this@FetchActivity, EmployeeDetailActivity::class.java)
+                            intent.putExtra("id", emp.id)
+                            intent.putExtra("name", emp.name)
+                            intent.putExtra("email", emp.email)
+                            intent.putExtra("phone", emp.phone)
+                            finish()
+                            startActivity(intent)
+
+                        }
+                    })
                 }
                 recyclerView.visibility = View.VISIBLE
                 loading.visibility = View.GONE

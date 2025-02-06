@@ -23,6 +23,7 @@ class AddEmployeeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_employee_activity)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -39,26 +40,27 @@ class AddEmployeeActivity : AppCompatActivity() {
         addButton.setOnClickListener {
             addEmployee()
         }
-
     }
 
     private fun addEmployee() {
+        val nameText = name.text.toString().trim()
+        val emailText = email.text.toString().trim()
+        val phoneText = phone.text.toString().trim()
 
-        if (name.text.toString().isEmpty() || email.text.toString().isEmpty() || phone.text.toString().isEmpty()) {
+        if (nameText.isEmpty() || emailText.isEmpty() || phoneText.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
 
         val employeeId = database.push().key!!
-        val employee = Employee(employeeId, name.text.toString(), email.text.toString(), phone.text.toString())
+        val employee = Employee(employeeId, nameText, emailText, phoneText)
 
-        database.push().setValue(employee)
+        database.child(employeeId).setValue(employee)
             .addOnSuccessListener {
                 Toast.makeText(this, "Employee added", Toast.LENGTH_SHORT).show()
                 name.text.clear()
                 email.text.clear()
                 phone.text.clear()
-
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to add employee", Toast.LENGTH_SHORT).show()
